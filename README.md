@@ -1,128 +1,142 @@
 3D Thermal Simulation: Hot Sphere Heating a Cold Plate (Python)
 
-This project demonstrates a 3D transient heat diffusion simulation implemented in Python. The model simulates the thermal interaction between a hot spherical object and a cold metallic plate, showing how heat propagates inside the solid over time.
+This project demonstrates a 3D transient heat diffusion simulation implemented in Python. The model simulates the thermal interaction between a hot spherical object and a cold metallic plate, showing how heat propagates through the plate over time. The simulation solves the transient heat equation on a structured 3D grid and produces a rotating animated visualization of the temperature field using PyVista.
 
-The simulation uses an explicit numerical solver for the heat equation and produces a rotating 3D animation of the temperature field using PyVista.
+Overview
 
-OVERVIEW
+The model represents a simple thermal contact problem in which a hot spherical body is placed on top of a cold plate. Heat is transferred through a circular contact region on the top surface, and the temperature distribution evolves inside the plate according to the heat diffusion equation. The goal of this project is to demonstrate how scientific simulations and numerical heat-transfer models can be implemented entirely in Python using modern numerical and visualization libraries.
 
-The model represents a thermal contact problem where a hot spherical body is placed on top of a cold plate. Heat is transferred through a circular contact region on the top surface, and the temperature distribution evolves inside the plate according to the heat diffusion equation.
+Physics Model
 
-The goal of this project is to demonstrate how scientific simulations can be implemented entirely in Python using numerical methods and modern visualization tools.
+The temperature evolution inside the plate follows the three-dimensional transient heat equation:
 
-PHYSICS MODEL
-
-The temperature evolution follows the three-dimensional transient heat equation:
-
-dT/dt = alpha * Laplacian(T)
+∂T/∂t = α ∇²T
 
 where:
 
-T = temperature
-t = time
-alpha = thermal diffusivity
+T is temperature
 
-The equation is solved using an explicit finite difference method on a structured grid.
+t is time
 
-GEOMETRY
+α is the thermal diffusivity
 
-Plate dimensions:
+∇²T is the Laplacian of the temperature field
+
+The equation is solved using an explicit finite difference method (FDM) on a structured grid.
+
+Geometry
+
+The simulation domain is a rectangular plate with dimensions:
 
 60 mm × 60 mm × 10 mm
 
-A spherical heat source is positioned above the plate and transfers heat through a circular contact patch on the top surface.
+A spherical heat source is positioned above the plate and transfers heat through a circular contact region on the top surface.
 
-Conceptual geometry:
+Conceptual representation:
 
-    Hot Sphere
-        O
-        |
-        | heat transfer
-| |
-| Plate |
-| |
-       Cold boundary
+        Hot Sphere
+            O
+            |
+            | heat transfer
+   ---------------------------
+   |                         |
+   |          Plate          |
+   |                         |
+   ---------------------------
+           Cold boundary
+Boundary Conditions
 
-BOUNDARY CONDITIONS
+The model includes three types of thermal boundary conditions:
 
-Bottom Surface
-Constant temperature boundary condition (cold plate)
+Bottom surface
+
+Constant temperature boundary condition representing a cold plate.
 
 T = 293 K
 
-Side Surfaces
-Thermally insulated boundaries
+Side surfaces
 
-dT/dn = 0
+Thermally insulated boundaries.
 
-Top Surface
-Insulated except for the circular contact region where the temperature is fixed:
+∂T/∂n = 0
+
+Top surface
+
+Insulated except for the circular contact region where the temperature is fixed.
 
 T = 1500 K
 
-NUMERICAL METHOD
+Numerical Method
 
 The simulation uses:
 
 Explicit finite difference method (FDM)
 
-Structured three-dimensional grid
+Structured 3D computational grid
 
-Central difference Laplacian
+Central difference approximation for the Laplacian
 
-Stability-controlled timestep
+Stability-controlled time stepping
 
 The explicit scheme must satisfy the stability condition:
 
-dt <= 1 / [2 * alpha * (1/dx^2 + 1/dy^2 + 1/dz^2)]
+Δt ≤ 1 / [2α (1/dx² + 1/dy² + 1/dz²)]
 
-VISUALIZATION
+Visualization
 
-The simulation results are visualized using PyVista.
+Simulation results are visualized using PyVista, enabling interactive 3D rendering and animation. The visualization shows the temperature distribution inside the plate while the camera rotates around the model.
 
-The visualization includes:
+The output animation illustrates:
 
-3D temperature distribution inside the plate
+Heat spreading from the contact region
 
-rotating camera animation
+Temperature gradients inside the plate
 
-animated GIF output
+Rotating 3D visualization of the thermal field
 
-The animation shows heat spreading through the plate while the scene rotates in 3D.
+The simulation generates an animated file such as:
 
-TECHNOLOGIES USED
+rotating_plate_heating.gif
+Technologies Used
 
 Python
-NumPy – numerical computation
-PyVista – 3D scientific visualization
-Finite Difference Method – PDE solver
 
-RUNNING THE SIMULATION
+NumPy – numerical computation
+
+PyVista – 3D scientific visualization
+
+Finite Difference Method (FDM) – numerical solution of the heat equation
+
+Running the Simulation
 
 Install required libraries:
 
 pip install numpy pyvista
 
-Run the simulation:
+Run the simulation script:
 
-python hot_sphere_plate_heating.py
+XXXX.py
 
-The simulation will generate an animation file:
+The simulation will generate an animated temperature visualization saved as:
 
 rotating_plate_heating.gif
+Applications
 
-APPLICATIONS
-
-This simulation illustrates concepts commonly used in:
+This example demonstrates numerical techniques commonly used in:
 
 Heat transfer modeling
-Thermal contact problems
-Electronics cooling
-Materials processing
-Scientific computing workflows
-Engineering visualization
 
-AUTHOR
+Thermal contact problems
+
+Materials processing
+
+Electronics cooling
+
+Scientific computing workflows
+
+Engineering simulation visualization
+
+Author
 
 Habib Pouriayevali
 Computational Mechanics | Finite Element Modeling | Scientific Computing
