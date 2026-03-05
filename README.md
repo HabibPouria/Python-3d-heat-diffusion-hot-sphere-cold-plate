@@ -31,18 +31,7 @@ The simulation domain consists of a rectangular plate with dimensions:
 
 A hot spherical body is positioned above the plate and transfers heat through a circular contact patch on the top surface.
 
-Conceptual geometry:
 
-        Hot Sphere
-            O
-            |
-            | heat transfer
-   ---------------------------
-   |                         |
-   |          Plate          |
-   |                         |
-   ---------------------------
-           Cold boundary
 Boundary Conditions
 
 The thermal model includes the following boundary conditions:
